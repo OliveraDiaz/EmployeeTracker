@@ -56,7 +56,7 @@ function initQuestions() {
                 viewAllEmployees();
                 break;
 
-             case "Add Department":
+             case "Add a Department":
                 addDepartment();
                 break;
 
@@ -110,22 +110,29 @@ function viewAllEmployees() {
 };
 
 function addDepartment() {
-    inquirer.prompt([
-        {
+    inquirer
+        .prompt({
             type: "input",
-            message: "What is the name of the new department?",
-            name: "departmentName"
-        }
-    ]).then((answer) => {
-        const sql = "INSERT INTO department (name) VALUES (?)";
-
-        connection.query(sql, [answer.departmentName], (err, res) => {
-            if (err) throw err;
-            console.log("Department added!");
-            initQuestions();
+            name: "departmentName",
+            message: "Enter the name of the new department:",
+        })
+        .then((answer) => {
+            console.log(answer.departmentName);
+            const query = `INSERT INTO department (name) VALUES ("${answer.departmentName}")`;
+            connection.query(query, (err, res) => {
+                if (err) throw err;
+                console.log(`Added ${answer.departmentName} as a new department in the database!`);
+                // restart the application
+                initQuestions();
+                console.log(answer.departmentName);
+            });
         });
-    });
-};
+}
+
+//q: why does the above funciton not let me add a department?
+
+
+
 
 function addRole() {
     inquirer.prompt([
