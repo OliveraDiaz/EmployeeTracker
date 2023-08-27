@@ -2,18 +2,17 @@
 const inquirer = require('inquirer');
 // Import and require mysql2
 const mysql = require('mysql2');
-
-
-// Connect to database
 const connection = mysql.createConnection(
     {
         host: 'localhost',
         // MySQL username,
         user: 'root',
         // MySQL password
-        password: '',
+        password: 'utsabootcamp23!',
         database: 'employees_db',
 });
+
+
 
 
 connection.connect((err) => {
@@ -68,7 +67,7 @@ function initQuestions() {
                 addEmployee();
                 break;            
 
-            case "Update Employee Role":
+            case "Update an Employee's Role":
                 updateEmployeeRole();
                 break;
 
