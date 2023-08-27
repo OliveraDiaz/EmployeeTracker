@@ -1,3 +1,4 @@
+
 const inquirer = require('inquirer');
 // Import and require mysql2
 const mysql = require('mysql2');
@@ -63,7 +64,7 @@ function initQuestions() {
                 addRole();
                 break;
 
-            case "Add Employee":
+            case "Add an Employee":
                 addEmployee();
                 break;            
 
