@@ -1,4 +1,3 @@
-const e = require('express');
 const inquirer = require('inquirer');
 // Import and require mysql2
 const mysql = require('mysql2');
@@ -60,7 +59,7 @@ function initQuestions() {
                 addDepartment();
                 break;
 
-            case "Add Role":
+            case "Add a Role":
                 addRole();
                 break;
 
@@ -129,10 +128,6 @@ function addDepartment() {
         });
 }
 
-//q: why does the above funciton not let me add a department?
-
-
-
 
 function addRole() {
     inquirer.prompt([
@@ -153,6 +148,7 @@ function addRole() {
         }
     ]).then((answer) => {
         const sql = "INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)";
+
 
         connection.query(sql, [answer.roleName, answer.roleSalary, answer.roleDepartmentID], (err, res) => {
             if (err) throw err;
